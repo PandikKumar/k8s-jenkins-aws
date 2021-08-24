@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jhooq-springboot
+  name: springboot
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: jhooq-springboot
+      app: springboot
   template:
     metadata:
       labels:
-        app: jhooq-springboot
+        app: springboot
     spec:
       containers:
         - name: springboot
-          image: rahulwagh17/jhooq-docker-demo:jhooq-docker-demo
+          image: pkjack/docker-demo:docker-demo
           ports:
             - containerPort: 8080
           env:
@@ -24,11 +24,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: jhooq-springboot
+  name: springboot
 spec:
   type: LoadBalancer
   ports:
     - port: 80
       targetPort: 8080
   selector:
-    app: jhooq-springboot
+    app: springboot
